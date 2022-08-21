@@ -17,7 +17,7 @@ SQLALCHEMY_DATABASE_URI = DB_URI
 # 是否需要跟蹤修改
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-# btdgaukzxiwjsnsq
+
 # MAIL_USE_TLS：587
 # MAIL_USE_SSL：465
 
@@ -26,9 +26,9 @@ MAIL_SERVER = "smtp.gmail.com"
 MAIL_PORT = 465
 # MAIL_USE_TLS = True
 MAIL_USE_SSL = True
-MAIL_USERNAME = "evelyndatalearning@gmail.com"
-MAIL_PASSWORD = "btdgaukzxiwjsnsq"
-MAIL_DEFAULT_SENDER = "evelyndatalearning@gmail.com"
+MAIL_USERNAME = ""
+MAIL_PASSWORD = ""
+MAIL_DEFAULT_SENDER = ""
 
 # redis-server.exe redis.windows.conf
 # pip install redis
