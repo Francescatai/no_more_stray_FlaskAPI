@@ -1,0 +1,55 @@
+{% extends "front/base.html" %}
+
+{% block title %}
+齊助浪寶-{{ post.title }}
+{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='lib/highlight/styles/github-dark.min.css') }}">
+  <script src="{{ url_for('static', filename='lib/highlight/highlight.min.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='front/css/post_detail.css') }}">
+  <script src="{{ url_for('static', filename='front/js/post_detail.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+<div class="post-container" style=" border-radius:20px;">
+      <h2>{{ post.title }}</h2>
+      <p class="post-info-group">
+        <span>發布時間：{{ post.create_time }}</span>
+        <span>作者：{{ post.author.username }}</span>
+        <span>討論分類：{{ post.board.name }}</span>
+        <span>討論數：{{ comment_count }}</span>
+      </p>
+      <div class="post-content">
+        {{ post.content|safe }}
+      </div>
+    </div>
+<div class="comment-group" style=" border-radius:20px;">
+  <h3><font color="#5B6056">討論</font></h3>
+  <ul class="comment-list-group">
+    {% for comment in post.comments %}
+    <li>
+      <div class="avatar-group">
+        <img src="{{ url_for('media.get_avatar', filename=comment.author.avatar) }}" alt="">
+      </div>
+      <div class="comment-content">
+        <p class="author-info">
+          <span>{{ comment.author.username }}</span>
+          <span>{{ comment.create_time }}</span>
+        </p>
+        <p class="comment-txt">
+          {{ comment.content }}
+        </p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+<div class="add-comment-group" style=" border-radius:20px;">
+  <h3><font color="#5B6056">參與討論</font></h3>
+  <textarea name="comment" id="comment-textarea" style="width: 100%; resize:vertical;border-radius:20px;"></textarea>
+  <div class="comment-btn-group">
+    <button class="btn btn-default" id="comment-btn" data-post-id="{{ post.id }}" data-user-id="{{ user.id if user else '' }}" style="background-color:#FCD52E; border-radius:20px;">參與討論</button>
+  </div>
+</div>
+{% endblock %}

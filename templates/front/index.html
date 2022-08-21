@@ -1,0 +1,77 @@
+{% extends "front/base.html" %}
+
+{% block title %}
+  齊助浪寶討論專區
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static',filename='front/css/index.css')}}">
+{% endblock %}
+
+{% block body %}
+<div class="lg-container">
+            <div class="post-group" style="border-radius:20px;">
+              <ul class="post-group-head">
+                {% if st == 1 %}
+                  <li class="active" style="background-color:#D0DCC6; border-radius:10px;text-align:center;">
+                {% else %}
+                  <li>
+                {% endif %}
+                <a href="{{ url_for("front.index", st=1, bd=bd) }}"><font color="#5B6056">最新</font></a>
+                  </li>
+
+                {% if st == 2 %}
+                  <li class="active" style="background-color:#D0DCC6; border-radius:10px;text-align:center;">
+                {% else %}
+                  <li>
+                {% endif %}
+                <a href="{{ url_for('front.index', st=2, bd=bd) }}"><font color="#5B6056">最多討論</font></a>
+                </li>
+              </ul>
+              <ul class="post-list-group">
+                {% for post in posts %}
+                  <li>
+                    <div class="author-avatar-group">
+                      <img src="{{ url_for('media.get_avatar', filename=post.author.avatar) }}" alt="">
+                    </div>
+                    <div class="post-info-group">
+                      <p class="post-title">
+                        <a href="{{ url_for('front.post_detail', post_id=post.id) }}">{{ post.title }}</a>
+                      </p>
+                      <p class="post-info">
+                        <span>作者：{{ post.author.username }}</span>
+                        <span>發表時間：{{ post.create_time }}</span>
+                        <span>評論:{{ post.comments|length }}</span>
+                      </p>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+              <div style="text-align: center;">
+                {{ pagination.links }}
+              </div>
+            </div>
+          </div>
+<div class="sm-container">
+          <div style="padding-bottom:10px;">
+            <a href="{{ url_for('front.public_post') }}" class="btn btn-warning btn-block" style="background-color:#FCD52E; border-radius:20px; border-color:#FCD52E;"><font color="#5B6056">發布討論</font></a>
+          </div>
+          <div class="list-group">
+              {% if bd %}
+                <a href="/" class="list-group-item" style="background-color:#D0DCC6; border-radius:10px;text-align:center;">所有專區</a>
+              {% else %}
+            <a href="/" class="list-group-item active" style="background-color:#D0DCC6; border-radius:10px; text-align:center; border-color:#D0DCC6;"><font color="#5B6056">所有專區</font></a>
+              {% endif %}
+
+              {% for board in boards %}
+                {% if bd == board.id %}
+                  <a href="{{ url_for('front.index', bd=board.id, page=1) }}" class="list-group-item active" style="border-radius:10px;background-color:#F1EDE2;border-color:#D0DCC6;color=#5B6056;">
+                {% else %}
+                  <a href="{{ url_for('front.index', bd=board.id, page=1) }}" class="list-group-item" style="border-radius:10px;text-align:center;">
+                {% endif %}
+                    <font color="#5B6056">{{ board.name }}</font>
+                </a>
+              {% endfor %}
+          </div>
+        </div>
+{% endblock %}
