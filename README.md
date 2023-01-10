@@ -1,6 +1,6 @@
 # 齊助浪寶討論專區(DEMO)
 
-## 齊助浪寶首頁(Click to learn more): [![](https://img.shields.io/badge/-🐾🐕🐈%20齊助浪寶no_more_stray-000)](http://petrip.pair.tw)
+## 齊助浪寶首頁(Click to learn more): [![](https://img.shields.io/badge/-🐾🐕🐈%20齊助浪寶no_more_stray-000)](https://github.com/Francescatai/NoMoreStray_flaskAPI.git)
 
 ### Introduction
 齊助浪寶領養平台的DEMO版本，用於讓領養者及寵物領域相關專家進行交流，也可以互相討論養寵相關心得
